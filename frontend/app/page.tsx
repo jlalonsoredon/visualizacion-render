@@ -479,21 +479,7 @@ export default function MLVisualizer() {
           </div>
         </div>
 
-        <div className="mt-auto p-5 flex flex-col items-center gap-3">
-          <p className="text-sm font-bold text-center text-white">Curso gratuito de 6h de introducción a Data Science</p>
-          <Image src={tpsImage} alt="Curso Data Science" className="w-full rounded-lg" />
-          <span className="w-full text-center text-cyan-300 font-mono text-base whitespace-nowrap overflow-hidden text-ellipsis" style={{letterSpacing: '0.04em'}}>
-            www.tuprimerasemana.com
-          </span>
-          <a
-            href="https://datascience4business.com/pdsm2-tps2-01-optin/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full text-center bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white font-extrabold py-3 px-4 rounded-lg transition shadow-lg shadow-cyan-500/40 tracking-widest text-base"
-          >
-            APUNTARME
-          </a>
-        </div>
+        
       </div>
 
       <div className="flex-1 flex items-center justify-center bg-[#0a0d14] relative overflow-hidden p-8">
