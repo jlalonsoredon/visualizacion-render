@@ -11,11 +11,13 @@ export default function MLVisualizer() {
   const [noise, setNoise] = useState(0.2);
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const abortRef = useRef<AbortController | null>(null);
 
   const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+  console.log("API_URL:", API_URL);
 
   // Valores por defecto recomendados (mejores prácticas)
   const DEFAULTS = {
@@ -118,7 +120,8 @@ export default function MLVisualizer() {
       setData(res.data);
     } catch (error: any) {
       if (error?.name === "CanceledError" || error?.code === "ERR_CANCELED") return;
-      console.error("Error conectando al backend (¿Está encendido?):", error);
+      setError(error.message || "Error de conexión");
+      console.error("Error conectando al backend:", error);
     } finally {
       setLoading(false);
     }
@@ -531,6 +534,22 @@ export default function MLVisualizer() {
           </div>
         )}
         <div ref={containerRef} className="relative w-full h-full border-2 border-blue-700/30 bg-[#10131a] shadow-2xl shadow-blue-700/20 rounded-lg">
+          {!data && !loading && (
+            <div className="absolute inset-0 flex items-center justify-center text-center p-8">
+              {error ? (
+                <div className="text-red-400">
+                  <p className="font-bold mb-2">Error de conexión</p>
+                  <p className="text-sm text-red-300">{error}</p>
+                  <p className="text-xs text-red-500 mt-2">API_URL: {API_URL}</p>
+                </div>
+              ) : (
+                <div className="text-blue-400">
+                  <p className="text-lg">Cargando datos...</p>
+                  <p className="text-sm text-blue-300 mt-2">API: {API_URL}</p>
+                </div>
+              )}
+            </div>
+          )}
           <canvas ref={canvasRef} className="absolute inset-0 w-full h-full opacity-60 blur-[2px]"/>
           <svg className="absolute inset-0 w-full h-full pointer-events-none z-10">
             {/* Líneas de separación verticales */}
