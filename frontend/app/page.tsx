@@ -77,8 +77,8 @@ export default function MLVisualizer() {
   const COLORS = {
     class0: "#2563eb", // Azul (Tailwind blue-600)
     class1: "#ef4444", // Rojo (Tailwind red-500)
-    boundary0: "rgba(37, 99, 235, 0.13)", // Azul translúcido
-    boundary1: "rgba(239, 68, 68, 0.13)", // Rojo translúcido
+    boundary0: "rgba(37, 99, 235, 0.50)", // Azul
+    boundary1: "rgba(239, 68, 68, 0.50)", // Rojo
   };
 
   const fetchData = async () => {
@@ -536,7 +536,7 @@ export default function MLVisualizer() {
               )}
             </div>
           )}
-          <canvas ref={canvasRef} className="absolute inset-0 w-full h-full opacity-60 blur-[2px]"/>
+          <canvas ref={canvasRef} className="absolute inset-0 w-full h-full opacity-60"/>
           <svg className="absolute inset-0 w-full h-full pointer-events-none z-10">
             {/* Líneas de separación verticales */}
             {Array.from({length: data?.grid_dims?.width || 0}).map((_, j) => (
